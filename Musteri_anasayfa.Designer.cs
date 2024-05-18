@@ -1,14 +1,14 @@
 ﻿namespace OtelOtomasyon
 {
-    partial class Form1
+    partial class Musteri_anasayfa
     {
         /// <summary>
-        ///  Required designer variable.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        ///  Clean up any resources being used.
+        /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
@@ -23,23 +23,37 @@
         #region Windows Form Designer generated code
 
         /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
+            btnGiris = new Button();
             SuspendLayout();
             // 
-            // Form1
+            // btnGiris
+            // 
+            btnGiris.Location = new Point(694, 12);
+            btnGiris.Name = "btnGiris";
+            btnGiris.Size = new Size(94, 29);
+            btnGiris.TabIndex = 0;
+            btnGiris.Text = "button1";
+            btnGiris.UseVisualStyleBackColor = true;
+            btnGiris.Click += btnGiris_Click;
+            // 
+            // Musteri_anasayfa
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(790, 515);
-            Name = "Form1";
-            Text = "Form1";
+            ClientSize = new Size(800, 450);
+            Controls.Add(btnGiris);
+            Name = "Musteri_anasayfa";
+            Text = "Musteri_anasayfa";
             ResumeLayout(false);
         }
 
         #endregion
+
+        private Button btnGiris;
     }
 }
