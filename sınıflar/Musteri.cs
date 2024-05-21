@@ -8,7 +8,7 @@ using SimpleHashing.Net;
 
 namespace OtelOtomasyon.sınıflar
 {
-    internal class Musteri
+    public class Musteri
     {
         SimpleHash sifrele = new SimpleHash();
 
@@ -30,5 +30,11 @@ namespace OtelOtomasyon.sınıflar
             Tel = tel;
             Sifre = sifrele.Compute(sifre);
         }
+
+        public void SifreDegis(string YeniSifre)
+        {
+            Sifre =  sifrele.Compute(YeniSifre);
+        }
+
     }
 }

@@ -22,7 +22,7 @@ namespace OtelOtomasyon.sınıflar
                 try
                 {
                     baglanti.Open();
-                    SqlCommand _sorgu = new SqlCommand($"INSERT INTO {tablo} values {degerler}", baglanti);
+                    SqlCommand _sorgu = new SqlCommand($"INSERT INTO {tablo} values ({degerler})", baglanti);
                     _sorgu.ExecuteNonQuery();
                     MessageBox.Show("Kayit basarili.");
                 }
@@ -72,7 +72,6 @@ namespace OtelOtomasyon.sınıflar
                     using (SqlDataReader okuyucu = _sorgu.ExecuteReader())
                     {
                         
-                        MessageBox.Show(okuyucu.FieldCount.ToString());
                         while(okuyucu.Read())
                         {
                             List<string> satir = new List<string>();

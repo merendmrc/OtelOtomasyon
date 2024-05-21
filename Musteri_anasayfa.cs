@@ -17,10 +17,42 @@ namespace OtelOtomasyon
             InitializeComponent();
         }
 
-        private void btnGiris_Click(object sender, EventArgs e)
+        private void Musteri_anasayfa_Load(object sender, EventArgs e)
         {
-            Form girisform = new form_MusteriGiris();
-            girisform.Show();
+            if (form_MusteriGiris.oturum != null)
+            {
+                label1.Text = $"Hosgeldiniz {form_MusteriGiris.oturum.Ad} {form_MusteriGiris.oturum.Soyad}";
+            }
+            else
+            {
+                label1.Text = "Lutfen giris yapiniz...";
+            }
+        }
+
+        private void btnRezervasyonYap_Click(object sender, EventArgs e)
+        {
+            Form form = new form_RezervasyonYap();
+            form.ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Form form = new form_MusteriGiris();
+            this.Close();
+            form.ShowDialog();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if(form_MusteriGiris.oturum != null)
+            {
+                DialogResult sonuc = MessageBox.Show("Oturumu kapatmak istediğinize emin misiniz?", "Oturum Kapatma", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if(sonuc == DialogResult.Yes)
+                {
+                    form_MusteriGiris.oturum = null;
+                    label1.Text = "Lutfen oturum aciniz..";
+                }
+            }
         }
     }
 }

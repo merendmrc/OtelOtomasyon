@@ -60,6 +60,7 @@
             btnGiris.TabIndex = 2;
             btnGiris.Text = "Giris yap";
             btnGiris.UseVisualStyleBackColor = true;
+            btnGiris.Click += btnGiris_Click;
             // 
             // lable1
             // 
@@ -95,7 +96,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(775, 420);
             Controls.Add(btnKayit);
             Controls.Add(label2);
             Controls.Add(lable1);
@@ -111,8 +112,8 @@
 
         #endregion
 
-        private TextBox txtTckn;
-        private TextBox txtSifre;
+        private static TextBox txtTckn;
+        private static TextBox txtSifre;
         private Button btnGiris;
         private Label lable1;
         private Label label2;
