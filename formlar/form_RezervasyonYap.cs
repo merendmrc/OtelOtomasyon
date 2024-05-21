@@ -18,17 +18,9 @@ namespace OtelOtomasyon
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            TimeSpan gunSayisi = dateTimePicker2.Value.Subtract(dateTimePicker1.Value);
-            /*
-            MessageBox.Show($"'Konaklama ucreti',{gunSayisi.Days}");
-            Veritabani.Ekle("Hesaplar", $"'Konaklama ucreti',{gunSayisi.Days}");
-            Veritabani.Ekle("Rezervasyon", $"{comboBox2.SelectedIndex},25,'{dateTimePicker1.Text}','{dateTimePicker2.Text}'");
-            Veritabani.Ekle("Rezervasyonlar", $"{77777777777},24");
-             
-             */
-
+            Rezervasyon aH = new Rezervasyon(Convert.ToInt32(comboBox2.SelectedItem), dateTimePicker1.Text, dateTimePicker2.Text);
         }
     }
 }

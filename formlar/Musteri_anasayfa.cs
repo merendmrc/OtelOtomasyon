@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OtelOtomasyon.sınıflar;
 
 namespace OtelOtomasyon
 {
@@ -44,15 +45,25 @@ namespace OtelOtomasyon
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if(form_MusteriGiris.oturum != null)
+            if (form_MusteriGiris.oturum != null)
             {
                 DialogResult sonuc = MessageBox.Show("Oturumu kapatmak istediğinize emin misiniz?", "Oturum Kapatma", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if(sonuc == DialogResult.Yes)
+                if (sonuc == DialogResult.Yes)
                 {
                     form_MusteriGiris.oturum = null;
                     label1.Text = "Lutfen oturum aciniz..";
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+  
         }
     }
 }

@@ -33,10 +33,10 @@
             label3 = new Label();
             label4 = new Label();
             comboBox1 = new ComboBox();
-            button1 = new Button();
             dateTimePicker1 = new DateTimePicker();
             dateTimePicker2 = new DateTimePicker();
             comboBox2 = new ComboBox();
+            button2 = new Button();
             SuspendLayout();
             // 
             // label1
@@ -84,16 +84,6 @@
             comboBox1.Size = new Size(151, 28);
             comboBox1.TabIndex = 4;
             // 
-            // button1
-            // 
-            button1.Location = new Point(604, 135);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 5;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // dateTimePicker1
             // 
             dateTimePicker1.CustomFormat = "yyyy-MM-dd";
@@ -121,15 +111,25 @@
             comboBox2.Size = new Size(151, 28);
             comboBox2.TabIndex = 8;
             // 
+            // button2
+            // 
+            button2.Location = new Point(603, 167);
+            button2.Name = "button2";
+            button2.Size = new Size(94, 29);
+            button2.TabIndex = 9;
+            button2.Text = "button2";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // form_RezervasyonYap
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(812, 414);
+            Controls.Add(button2);
             Controls.Add(comboBox2);
             Controls.Add(dateTimePicker2);
             Controls.Add(dateTimePicker1);
-            Controls.Add(button1);
             Controls.Add(comboBox1);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -148,9 +148,9 @@
         private Label label3;
         private Label label4;
         private ComboBox comboBox1;
-        private Button button1;
         private DateTimePicker dateTimePicker1;
         private DateTimePicker dateTimePicker2;
         private ComboBox comboBox2;
+        private Button button2;
     }
 }
