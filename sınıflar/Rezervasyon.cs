@@ -18,6 +18,7 @@ namespace OtelOtomasyon.sınıflar
             int id = 1;
             var x = Veritabani.Cek("*", tablo);
             List<int> list = new List<int>();
+
             foreach (var i in x)
             {
                 list.Add(int.Parse(i[0]));
