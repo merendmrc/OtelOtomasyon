@@ -17,7 +17,12 @@ namespace OtelOtomasyon.sınıflar
             Hesap_id = Rezervasyon.id_olustur("Hesaplar");
             Hizmet = hizmet;
             Tutar = tutar;
-            Veritabani.Ekle("Hesaplar", $"{this.Hesap_id},'{this.Hizmet}',{this.Tutar}");
+
+
+        }
+        public void Hesap_olustur(int rez_id)
+        {
+            Veritabani.Ekle("Hesaplar", $"{this.Hesap_id},{rez_id},'{this.Hizmet}',{this.Tutar}");
 
         }
 

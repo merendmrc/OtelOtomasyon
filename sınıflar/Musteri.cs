@@ -42,7 +42,8 @@ namespace OtelOtomasyon.sınıflar
 
         public void Rez_ekle(Rezervasyon rezervasyon)
         {
-            Veritabani.Ekle("Rezervasyon", $"{rezervasyon.Rez_id},{rezervasyon.Oda_id},{rezervasyon.Hesap_id},'{rezervasyon.Baslangic}','{rezervasyon.Bitis}'");
+            MessageBox.Show(rezervasyon.Oda_id.ToString());
+            Veritabani.Ekle("Rezervasyon", $"{rezervasyon.Rez_id},{rezervasyon.Oda_id},'{rezervasyon.Baslangic}','{rezervasyon.Bitis}'");
             Veritabani.Ekle("Rezervasyonlar", $"{Rezervasyon.id_olustur("Rezervasyonlar")},'{this.TCKN}',{rezervasyon.Rez_id}");
         }
 

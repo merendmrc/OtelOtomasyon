@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OtelOtomasyon.formlar;
 using OtelOtomasyon.sınıflar;
 
 namespace OtelOtomasyon
@@ -58,7 +59,8 @@ namespace OtelOtomasyon
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            Form form = new form_Rezervasyonlarim();
+            form.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)

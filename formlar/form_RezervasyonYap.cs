@@ -62,6 +62,7 @@ namespace OtelOtomasyon
                     if (cevap== DialogResult.Yes)
                     {
                         Rezervasyon rezervasyon = new Rezervasyon(Convert.ToInt32(cmbOda_no.SelectedItem.ToString().Split(" ")[1]), dateGiris.Text, dateBitis.Text);
+                        rezervasyon.Rezervasyon_olustur();
                         MessageBox.Show("Rezervasyonunuz basariyla gerceklesti. İyi gunler dileriz..");
                         this.Show();
                     }
