@@ -24,7 +24,6 @@ namespace OtelOtomasyon.sınıflar
                     baglanti.Open();
                     SqlCommand _sorgu = new SqlCommand($"INSERT INTO {tablo} values ({degerler})", baglanti);
                     _sorgu.ExecuteNonQuery();
-                    MessageBox.Show("Kayit basarili.");
                 }
                 catch (Exception ex)
                 {

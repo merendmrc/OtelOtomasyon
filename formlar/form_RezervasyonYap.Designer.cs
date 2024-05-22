@@ -33,10 +33,10 @@
             label3 = new Label();
             label4 = new Label();
             comboBox1 = new ComboBox();
-            dateTimePicker1 = new DateTimePicker();
-            dateTimePicker2 = new DateTimePicker();
-            comboBox2 = new ComboBox();
-            button2 = new Button();
+            dateGiris = new DateTimePicker();
+            dateBitis = new DateTimePicker();
+            cmbOda_no = new ComboBox();
+            btnRezervasyonYap = new Button();
             SuspendLayout();
             // 
             // label1
@@ -84,52 +84,54 @@
             comboBox1.Size = new Size(151, 28);
             comboBox1.TabIndex = 4;
             // 
-            // dateTimePicker1
+            // dateGiris
             // 
-            dateTimePicker1.CustomFormat = "yyyy-MM-dd";
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.Location = new Point(287, 111);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(200, 27);
-            dateTimePicker1.TabIndex = 6;
+            dateGiris.CustomFormat = "yyyy-MM-dd";
+            dateGiris.Format = DateTimePickerFormat.Custom;
+            dateGiris.Location = new Point(287, 111);
+            dateGiris.Name = "dateGiris";
+            dateGiris.Size = new Size(200, 27);
+            dateGiris.TabIndex = 6;
+            dateGiris.ValueChanged += dateGiris_ValueChanged_1;
             // 
-            // dateTimePicker2
+            // dateBitis
             // 
-            dateTimePicker2.CustomFormat = "yyyy-MM-dd";
-            dateTimePicker2.Format = DateTimePickerFormat.Custom;
-            dateTimePicker2.Location = new Point(287, 171);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(200, 27);
-            dateTimePicker2.TabIndex = 7;
+            dateBitis.CustomFormat = "yyyy-MM-dd";
+            dateBitis.Format = DateTimePickerFormat.Custom;
+            dateBitis.Location = new Point(287, 171);
+            dateBitis.Name = "dateBitis";
+            dateBitis.Size = new Size(200, 27);
+            dateBitis.TabIndex = 7;
             // 
-            // comboBox2
+            // cmbOda_no
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
-            comboBox2.Location = new Point(287, 236);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(151, 28);
-            comboBox2.TabIndex = 8;
+            cmbOda_no.FormattingEnabled = true;
+            cmbOda_no.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" });
+            cmbOda_no.Location = new Point(287, 236);
+            cmbOda_no.Name = "cmbOda_no";
+            cmbOda_no.Size = new Size(151, 28);
+            cmbOda_no.TabIndex = 8;
+            cmbOda_no.DropDown += cmbOda_no_DropDown;
             // 
-            // button2
+            // btnRezervasyonYap
             // 
-            button2.Location = new Point(603, 167);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 9;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            btnRezervasyonYap.Location = new Point(603, 167);
+            btnRezervasyonYap.Name = "btnRezervasyonYap";
+            btnRezervasyonYap.Size = new Size(94, 29);
+            btnRezervasyonYap.TabIndex = 9;
+            btnRezervasyonYap.Text = "button2";
+            btnRezervasyonYap.UseVisualStyleBackColor = true;
+            btnRezervasyonYap.Click += button2_Click;
             // 
             // form_RezervasyonYap
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(812, 414);
-            Controls.Add(button2);
-            Controls.Add(comboBox2);
-            Controls.Add(dateTimePicker2);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(btnRezervasyonYap);
+            Controls.Add(cmbOda_no);
+            Controls.Add(dateBitis);
+            Controls.Add(dateGiris);
             Controls.Add(comboBox1);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -137,6 +139,7 @@
             Controls.Add(label1);
             Name = "form_RezervasyonYap";
             Text = "Form1";
+            Load += form_RezervasyonYap_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -148,9 +151,9 @@
         private Label label3;
         private Label label4;
         private ComboBox comboBox1;
-        private DateTimePicker dateTimePicker1;
-        private DateTimePicker dateTimePicker2;
-        private ComboBox comboBox2;
-        private Button button2;
+        private DateTimePicker dateGiris;
+        private DateTimePicker dateBitis;
+        private ComboBox cmbOda_no;
+        private Button btnRezervasyonYap;
     }
 }
