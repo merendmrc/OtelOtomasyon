@@ -27,7 +27,7 @@ namespace OtelOtomasyon.formlar
 
         private void form_Rezervasyonlarim_Load(object sender, EventArgs e)
         {
-            var x = Veritabani.Cek("Musteriler.musteri_ad,Musteriler.musteri_soyad,Rezervasyon.oda_no,Rezervasyon.baslangic_tarih,Rezervasyon.bitis_tarih,Musteriler.musteri_tckn,Oda_tip.oda_tip", "Rezervasyonlar", innerJoin: "Musteriler on Rezervasyonlar.musteri_tckn = Musteriler.musteri_tckn inner join Rezervasyon on Rezervasyonlar.rezervasyon_id = Rezervasyon.rezervasyon_id inner join Hesaplar on Rezervasyonlar.rezervasyon_id = Hesaplar.rezervasyon_id inner join Odalar on Rezervasyon.oda_no = Odalar.oda_no inner join Oda_tip on Odalar.odatip_id = Oda_tip.odatip_id", kosul: $"Musteriler.musteri_tckn = '{30949934326}'");
+            var x = Veritabani.Cek("Musteriler.musteri_ad,Musteriler.musteri_soyad,Rezervasyon.oda_no,Rezervasyon.baslangic_tarih,Rezervasyon.bitis_tarih,Musteriler.musteri_tckn,Oda_tip.oda_tip,Rezervasyon.rezervasyon_id", "Rezervasyonlar", innerJoin: "Musteriler on Rezervasyonlar.musteri_tckn = Musteriler.musteri_tckn inner join Rezervasyon on Rezervasyonlar.rezervasyon_id = Rezervasyon.rezervasyon_id inner join Odalar on Rezervasyon.oda_no = Odalar.oda_no inner join Oda_tip on Odalar.odatip_id = Oda_tip.odatip_id", kosul: $"Rezervasyonlar.musteri_tckn = '{form_MusteriGiris.oturum.TCKN}'");
             DataTable dataTable = new DataTable();
 
             dataTable.Columns.Add("Ad", typeof(string));
@@ -37,6 +37,7 @@ namespace OtelOtomasyon.formlar
             dataTable.Columns.Add("Cikis tarihi", typeof(string));
             dataTable.Columns.Add("Tckn", typeof(string));
             dataTable.Columns.Add("Oda Tip", typeof(string));
+            dataTable.Columns.Add("Rez_id", typeof(string));
 
             foreach (var rowList in x)
             {
@@ -51,6 +52,7 @@ namespace OtelOtomasyon.formlar
             dataGridView1.DataSource = dataTable;
             dataGridView1.Columns["Tckn"].Visible = false;
             dataGridView1.Columns["Oda Tip"].Visible = false;
+            dataGridView1.Columns["Rez_id"].Visible = false;
 
             DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
             buttonColumn.HeaderText = "butonlarr";
@@ -69,7 +71,26 @@ namespace OtelOtomasyon.formlar
         {
             try
             {
+                
+
                 DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
+
+
+                var hizmetler = Veritabani.Cek("*", "Hesaplar", kosul: $"rezervasyon_id = {selectedRow.Cells["Rez_id"].Value}");
+
+                MessageBox.Show(hizmetler.Count.ToString());
+
+                string Hizmetler = "Fatura:\n";
+                int Total_ucret = 0;
+
+                for (int i = 0; i < hizmetler.Count; i++)
+                {
+                    Hizmetler += string.Format("{0}: {1:N2}₺\n", hizmetler[i][2], hizmetler[i][3]);
+                    Total_ucret += Convert.ToInt32(hizmetler[i][3]);
+                }
+
+                
+
                 string ad = selectedRow.Cells["Ad"].Value.ToString();
                 string soyad = selectedRow.Cells["Soyad"].Value.ToString();
                 string tckn = selectedRow.Cells["Tckn"].Value.ToString();
@@ -80,8 +101,11 @@ namespace OtelOtomasyon.formlar
                 string Total_gun = cikis.Subtract(giris).Days.ToString();
                 string Oda_tip = selectedRow.Cells["Oda Tip"].Value.ToString();
 
-                string Mesaj = $"Ad: {ad}\nSoyad: {soyad}\nTCKN:{tckn}\nOda turu: {Oda_tip}\nGiris tarihi: {sgiris}\nCikis tarihi: {scikis}\nToplam konaklanan gun: {Total_gun}";
-                MessageBox.Show(Mesaj, "Caption");
+
+
+
+                string Mesaj = $"Ad: {ad}\nSoyad: {soyad}\nTCKN:{tckn}\nOda turu: {Oda_tip}\nGiris tarihi: {sgiris}\nCikis tarihi: {scikis}\nToplam konaklanan gun: {Total_gun}\n{Hizmetler}\nToplam ucret: {Total_ucret}₺";
+                MessageBox.Show(Mesaj, "Hesap özet");
             }
             catch (Exception ex)
             {

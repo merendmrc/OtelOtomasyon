@@ -47,8 +47,8 @@ namespace OtelOtomasyon
         {
             if (form_MusteriGiris.oturum != null)
             {
-                bool durum = Gunler_bosmu(Veritabani.Cek("baslangic_tarih,bitis_tarih", "Rezervasyon", kosul: $" oda_no = '{cmbOda_no.Text.Split(" ")[1]}'"),dateGiris.Value,dateBitis.Value);
-                if(durum)
+                bool durum = Gunler_bosmu(Veritabani.Cek("baslangic_tarih,bitis_tarih", "Rezervasyon", kosul: $" oda_no = '{cmbOda_no.Text.Split(" ")[1]}'"), dateGiris.Value, dateBitis.Value);
+                if (durum)
                 {
                     var oda = Veritabani.Cek("oda_no,gunluk_ucret,oda_tip,oda_ozellikler", "Odalar", innerJoin: "Oda_tip on Odalar.odatip_id = Oda_tip.odatip_id", kosul: $"oda_no = {int.Parse(cmbOda_no.SelectedItem.ToString().Split(" ")[1])}")[0];
                     string bilgiler = $"Oda: {oda[0]}\nOda tipi: {oda[2]}\nOda ozellikler: {oda[3]}\nGiris tarihi: {dateGiris.Text}\nCikis tarihi: {dateBitis.Text}\nKonaklanacak gun sayisi: {(dateBitis.Value.Subtract(dateGiris.Value)).Days.ToString()}\nUcret: {(dateBitis.Value.Subtract(dateGiris.Value)).Days * int.Parse(oda[1])}";
@@ -57,9 +57,9 @@ namespace OtelOtomasyon
                     MessageBoxButtons buttons = MessageBoxButtons.YesNo;
                     DialogResult cevap;
 
-                    cevap = MessageBox.Show(Soru, Baslik, buttons );
+                    cevap = MessageBox.Show(Soru, Baslik, buttons);
 
-                    if (cevap== DialogResult.Yes)
+                    if (cevap == DialogResult.Yes)
                     {
                         Rezervasyon rezervasyon = new Rezervasyon(Convert.ToInt32(cmbOda_no.SelectedItem.ToString().Split(" ")[1]), dateGiris.Text, dateBitis.Text);
                         rezervasyon.Rezervasyon_olustur();
@@ -80,7 +80,7 @@ namespace OtelOtomasyon
                 Form form = new form_MusteriGiris();
                 form.ShowDialog();
             }
-        }   
+        }
 
         private void form_RezervasyonYap_Load(object sender, EventArgs e)
         {
@@ -124,12 +124,24 @@ namespace OtelOtomasyon
                 }
             }
 
-            if(cmbOda_no.Items.Count <1)
+            if (cmbOda_no.Items.Count < 1)
             {
                 MessageBox.Show($"Aradiginiz tarihler arasinda {comboBox1.SelectedText} odalarin hepsi rezerve eidlmistir.");
                 dateGiris.Focus();
                 cmbOda_no.SelectedIndex = -1;
 
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!checkBox1.Checked)
+            {
+                dateGiris.MinDate = DateTime.Now.AddDays(1);
+            }
+            else
+            {
+                dateGiris.MinDate = new DateTime(2020, 1, 1);
             }
         }
     }

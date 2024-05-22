@@ -24,10 +24,14 @@ namespace OtelOtomasyon
             if (form_MusteriGiris.oturum != null)
             {
                 label1.Text = $"Hosgeldiniz {form_MusteriGiris.oturum.Ad} {form_MusteriGiris.oturum.Soyad}";
+                btnCikis.Enabled = true;
+                btnGiris.Enabled = false;
             }
             else
             {
                 label1.Text = "Lutfen giris yapiniz...";
+                btnCikis.Enabled = false;
+                btnGiris.Enabled = true;
             }
         }
 
@@ -52,20 +56,42 @@ namespace OtelOtomasyon
                 if (sonuc == DialogResult.Yes)
                 {
                     form_MusteriGiris.oturum = null;
-                    label1.Text = "Lutfen oturum aciniz..";
+                    this.Close();
+                    Form form = new Musteri_anasayfa();
+                    form.Show();
                 }
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form form = new form_Rezervasyonlarim();
-            form.ShowDialog();
+            if(form_MusteriGiris.oturum != null)
+            {
+                Form form = new form_Rezervasyonlarim();
+                form.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Lutfen giris yapiniz...");
+                Form form = new form_MusteriGiris();
+                this.Close();
+                form.ShowDialog();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-  
+            var x = Veritabani.Cek("K.oda_no,K.rezervasyon_id", "Rezervasyonlar R", kosul: $"R.musteri_tckn = '{form_MusteriGiris.oturum.TCKN}'AND K.baslangic_tarih <= GETDATE() AND K.bitis_tarih >= GETDATE();", innerJoin: "Musteriler M ON R.musteri_tckn = M.musteri_tckn inner JOIN Rezervasyon K ON R.rezervasyon_id = K.rezervasyon_id");
+            
+            if(x.Count == 0)
+            {
+                MessageBox.Show("Bugun aktif rezervasyonunuz bulunmamaktadir.\nSiparisler sadece ayni gun icin verilebilir");
+            }
+            else
+            {
+                Form form = new form_SiparisVer(x);
+                form.ShowDialog();
+            }
         }
     }
 }

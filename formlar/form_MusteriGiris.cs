@@ -44,9 +44,8 @@ namespace OtelOtomasyon
         private void btnKayit_Click(object sender, EventArgs e)
         {
             Form kayitform = new form_MusteriKayit();
-            kayitform.ShowDialog();
+            kayitform.Show();
             this.Close();
-
         }
 
         private void btnGiris_Click(object sender, EventArgs e)

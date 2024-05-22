@@ -32,11 +32,14 @@ namespace OtelOtomasyon
             }
             else
             {
+                
                 Musteri yeni_musteri = new Musteri(txtTckn.Text,txtAd.Text,txtSoyad.Text,txtYas.Text,txtMail.Text,txtTelefon.Text,txtSifre.Text);
                 string sorgu = $"'{yeni_musteri.TCKN}', '{yeni_musteri.Ad}', '{yeni_musteri.Soyad}', {yeni_musteri.Yas}, '{yeni_musteri.Mail}', '{yeni_musteri.Tel}', '{yeni_musteri.Sifre}'";
                 Veritabani.Ekle("Musteriler", sorgu);
-                Form form = new Musteri_anasayfa();
+                MessageBox.Show("Kayit basarili.\nGiris sayfasina yonlendiriliyorsunuz.");
+                Form form = new form_MusteriGiris();
                 form.Show();
+                this.Close();
             }
 
         }

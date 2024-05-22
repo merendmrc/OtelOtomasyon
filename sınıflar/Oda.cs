@@ -17,10 +17,11 @@ namespace OtelOtomasyon.sınıflar
         public Oda(int oda_id)
         {
             Oda_id = oda_id;
-            var x = Veritabani.Cek("oda_tip,gunluk_ucret", "Odalar", innerJoin:  "Oda_tip on Odalar.odatip_id = Oda_tip.odatip_id");
+            var x = Veritabani.Cek("oda_tip,gunluk_ucret", "Odalar", innerJoin:  "Oda_tip on Odalar.odatip_id = Oda_tip.odatip_id", kosul: $"oda_no= {Oda_id}");
             Oda_tur = x[0][0].ToString();
             Oda_durum = true;
             Oda_fiyat = Convert.ToInt32(x[0][1]);
+            MessageBox.Show($"oda numarasi: {Oda_id}\noda tip{x[0][0].ToString()}\noda fiyat{Convert.ToInt32(x[0][1])}");
         }
     }
 }

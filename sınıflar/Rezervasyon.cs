@@ -46,7 +46,7 @@ namespace OtelOtomasyon.sınıflar
             Baslangic = baslangic;
             Bitis  = bitis;
             Aktif = (Convert.ToDateTime(baslangic)<= DateTime.Now && Convert.ToDateTime(bitis) >= DateTime.Now) ? true : false;
-            Hesap_id = Rezervasyon.id_olustur("Hesaplar");
+            Hesap_id = id_olustur("Hesaplar");
 
         }
 
