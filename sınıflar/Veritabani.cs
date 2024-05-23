@@ -16,6 +16,11 @@ namespace OtelOtomasyon.sınıflar
 
         public static void Ekle(string tablo, string degerler)
         {
+            //Verilen degereler veritabaninda verilen tabloya ekler
+            //args:
+            //     tablo(string)-> Veritabaninda uzerine eklenecek tablo
+            //     degerler(string)-> Veritabanına eklenecek degerler; virgul ile ayrilarak yazilmalidir
+
             using (SqlConnection baglanti = new SqlConnection(connectionString))
             {
 
@@ -41,7 +46,7 @@ namespace OtelOtomasyon.sınıflar
 
         public static List<List<string>> Cek(string sutunlar, string tablo, string kosul = "1=1", string innerJoin = null)
         {
-            ///<summary>
+            ///<summary
             ///Veritabanından belirli sütunları seçen ve belirli bir koşulu sağlayan verileri döndüren bir fonksiyon.
             ///</summary>
             ///<param name="sutunlar">Veritabanından hangi sütunların alınacağını belirler. Birden fazla sütun ismi virgülle ayrılarak yazılmalıdır.</param>

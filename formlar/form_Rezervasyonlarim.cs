@@ -27,6 +27,8 @@ namespace OtelOtomasyon.formlar
 
         private void form_Rezervasyonlarim_Load(object sender, EventArgs e)
         {
+            //oturum nesnesinin tckn ozelligi ile veritabaninda sorgu yapar,
+            //veritabaninda musteri_tckn'si oturum.tckn'ye esit olan tum rezervasyonlari datagridview nesnesine yazidirir.
             var x = Veritabani.Cek("Musteriler.musteri_ad,Musteriler.musteri_soyad,Rezervasyon.oda_no,Rezervasyon.baslangic_tarih,Rezervasyon.bitis_tarih,Musteriler.musteri_tckn,Oda_tip.oda_tip,Rezervasyon.rezervasyon_id", "Rezervasyonlar", innerJoin: "Musteriler on Rezervasyonlar.musteri_tckn = Musteriler.musteri_tckn inner join Rezervasyon on Rezervasyonlar.rezervasyon_id = Rezervasyon.rezervasyon_id inner join Odalar on Rezervasyon.oda_no = Odalar.oda_no inner join Oda_tip on Odalar.odatip_id = Oda_tip.odatip_id", kosul: $"Rezervasyonlar.musteri_tckn = '{form_MusteriGiris.oturum.TCKN}'");
             DataTable dataTable = new DataTable();
 
@@ -61,14 +63,9 @@ namespace OtelOtomasyon.formlar
             dataGridView1.Columns.Add(buttonColumn);
 
         }
-
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-           
-        }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            //tiklanan satirdaki rezervasyonun ozelliklerini yazdiran MessageBox'u acar.
             try
             {
                 
@@ -77,8 +74,6 @@ namespace OtelOtomasyon.formlar
 
 
                 var hizmetler = Veritabani.Cek("*", "Hesaplar", kosul: $"rezervasyon_id = {selectedRow.Cells["Rez_id"].Value}");
-
-                MessageBox.Show(hizmetler.Count.ToString());
 
                 string Hizmetler = "Fatura:\n";
                 int Total_ucret = 0;
@@ -113,5 +108,10 @@ namespace OtelOtomasyon.formlar
                 throw;
             }
         }
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
     }
 }

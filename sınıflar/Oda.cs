@@ -21,7 +21,6 @@ namespace OtelOtomasyon.sınıflar
             Oda_tur = x[0][0].ToString();
             Oda_durum = true;
             Oda_fiyat = Convert.ToInt32(x[0][1]);
-            MessageBox.Show($"oda numarasi: {Oda_id}\noda tip{x[0][0].ToString()}\noda fiyat{Convert.ToInt32(x[0][1])}");
         }
     }
 }

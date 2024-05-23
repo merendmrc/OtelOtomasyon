@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             btnRezervasyonYap = new Button();
-            button1 = new Button();
-            button2 = new Button();
+            btnRezervasyonlarim = new Button();
+            btnSiparisVer = new Button();
             label1 = new Label();
             btnGiris = new Button();
             btnCikis = new Button();
@@ -38,6 +38,7 @@
             // 
             // btnRezervasyonYap
             // 
+            btnRezervasyonYap.Enabled = false;
             btnRezervasyonYap.Location = new Point(107, 181);
             btnRezervasyonYap.Name = "btnRezervasyonYap";
             btnRezervasyonYap.Size = new Size(226, 49);
@@ -46,25 +47,27 @@
             btnRezervasyonYap.UseVisualStyleBackColor = true;
             btnRezervasyonYap.Click += btnRezervasyonYap_Click;
             // 
-            // button1
+            // btnRezervasyonlarim
             // 
-            button1.Location = new Point(107, 271);
-            button1.Name = "button1";
-            button1.Size = new Size(226, 46);
-            button1.TabIndex = 1;
-            button1.Text = "Rezervasyonlarım";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnRezervasyonlarim.Enabled = false;
+            btnRezervasyonlarim.Location = new Point(107, 271);
+            btnRezervasyonlarim.Name = "btnRezervasyonlarim";
+            btnRezervasyonlarim.Size = new Size(226, 46);
+            btnRezervasyonlarim.TabIndex = 1;
+            btnRezervasyonlarim.Text = "Rezervasyonlarım";
+            btnRezervasyonlarim.UseVisualStyleBackColor = true;
+            btnRezervasyonlarim.Click += button1_Click;
             // 
-            // button2
+            // btnSiparisVer
             // 
-            button2.Location = new Point(107, 354);
-            button2.Name = "button2";
-            button2.Size = new Size(226, 49);
-            button2.TabIndex = 2;
-            button2.Text = "Sipariş Ver";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            btnSiparisVer.Enabled = false;
+            btnSiparisVer.Location = new Point(107, 354);
+            btnSiparisVer.Name = "btnSiparisVer";
+            btnSiparisVer.Size = new Size(226, 49);
+            btnSiparisVer.TabIndex = 2;
+            btnSiparisVer.Text = "Sipariş Ver";
+            btnSiparisVer.UseVisualStyleBackColor = true;
+            btnSiparisVer.Click += button2_Click;
             // 
             // label1
             // 
@@ -105,10 +108,11 @@
             Controls.Add(btnCikis);
             Controls.Add(btnGiris);
             Controls.Add(label1);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btnSiparisVer);
+            Controls.Add(btnRezervasyonlarim);
             Controls.Add(btnRezervasyonYap);
             Name = "Musteri_anasayfa";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Musteri_anasayfa";
             Load += Musteri_anasayfa_Load;
             ResumeLayout(false);
@@ -118,8 +122,8 @@
         #endregion
 
         private Button btnRezervasyonYap;
-        private Button button1;
-        private Button button2;
+        private Button btnRezervasyonlarim;
+        private Button btnSiparisVer;
         private Button button3;
         private Label label1;
         private Button btnGiris;

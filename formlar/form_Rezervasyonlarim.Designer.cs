@@ -53,6 +53,7 @@
             ClientSize = new Size(721, 249);
             Controls.Add(dataGridView1);
             Name = "form_Rezervasyonlarim";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "form_Rezervasyonlarim";
             Load += form_Rezervasyonlarim_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

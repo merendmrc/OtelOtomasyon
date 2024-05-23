@@ -37,13 +37,12 @@
             dateBitis = new DateTimePicker();
             cmbOda_no = new ComboBox();
             btnRezervasyonYap = new Button();
-            checkBox1 = new CheckBox();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(137, 42);
+            label1.Location = new Point(69, 49);
             label1.Name = "label1";
             label1.Size = new Size(118, 20);
             label1.TabIndex = 0;
@@ -52,7 +51,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(128, 116);
+            label2.Location = new Point(60, 123);
             label2.Name = "label2";
             label2.Size = new Size(127, 20);
             label2.TabIndex = 1;
@@ -61,7 +60,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(128, 176);
+            label3.Location = new Point(60, 183);
             label3.Name = "label3";
             label3.Size = new Size(128, 20);
             label3.TabIndex = 2;
@@ -70,7 +69,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(167, 244);
+            label4.Location = new Point(99, 251);
             label4.Name = "label4";
             label4.Size = new Size(88, 20);
             label4.TabIndex = 3;
@@ -79,17 +78,19 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
+            comboBox1.ImeMode = ImeMode.Disable;
             comboBox1.Items.AddRange(new object[] { "Tek kisilik", "Cift kisilik", "Aile" });
-            comboBox1.Location = new Point(287, 39);
+            comboBox1.Location = new Point(219, 46);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(151, 28);
             comboBox1.TabIndex = 4;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // dateGiris
             // 
             dateGiris.CustomFormat = "yyyy-MM-dd";
             dateGiris.Format = DateTimePickerFormat.Custom;
-            dateGiris.Location = new Point(287, 111);
+            dateGiris.Location = new Point(219, 118);
             dateGiris.Name = "dateGiris";
             dateGiris.Size = new Size(200, 27);
             dateGiris.TabIndex = 6;
@@ -99,7 +100,7 @@
             // 
             dateBitis.CustomFormat = "yyyy-MM-dd";
             dateBitis.Format = DateTimePickerFormat.Custom;
-            dateBitis.Location = new Point(287, 171);
+            dateBitis.Location = new Point(219, 178);
             dateBitis.Name = "dateBitis";
             dateBitis.Size = new Size(200, 27);
             dateBitis.TabIndex = 7;
@@ -108,7 +109,7 @@
             // 
             cmbOda_no.FormattingEnabled = true;
             cmbOda_no.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" });
-            cmbOda_no.Location = new Point(287, 236);
+            cmbOda_no.Location = new Point(219, 243);
             cmbOda_no.Name = "cmbOda_no";
             cmbOda_no.Size = new Size(151, 28);
             cmbOda_no.TabIndex = 8;
@@ -116,31 +117,19 @@
             // 
             // btnRezervasyonYap
             // 
-            btnRezervasyonYap.Location = new Point(625, 199);
+            btnRezervasyonYap.Location = new Point(149, 332);
             btnRezervasyonYap.Name = "btnRezervasyonYap";
-            btnRezervasyonYap.Size = new Size(94, 29);
+            btnRezervasyonYap.Size = new Size(162, 44);
             btnRezervasyonYap.TabIndex = 9;
-            btnRezervasyonYap.Text = "button2";
+            btnRezervasyonYap.Text = "Rezervasyon Yap";
             btnRezervasyonYap.UseVisualStyleBackColor = true;
             btnRezervasyonYap.Click += button2_Click;
-            // 
-            // checkBox1
-            // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(514, 116);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(78, 24);
-            checkBox1.TabIndex = 10;
-            checkBox1.Text = "gecmis";
-            checkBox1.UseVisualStyleBackColor = true;
-            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
             // 
             // form_RezervasyonYap
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(812, 414);
-            Controls.Add(checkBox1);
+            ClientSize = new Size(480, 414);
             Controls.Add(btnRezervasyonYap);
             Controls.Add(cmbOda_no);
             Controls.Add(dateBitis);
@@ -151,6 +140,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "form_RezervasyonYap";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             Load += form_RezervasyonYap_Load;
             ResumeLayout(false);
@@ -168,6 +158,5 @@
         private DateTimePicker dateBitis;
         private ComboBox cmbOda_no;
         private Button btnRezervasyonYap;
-        private CheckBox checkBox1;
     }
 }

@@ -51,6 +51,7 @@
             txtSifre.Name = "txtSifre";
             txtSifre.Size = new Size(125, 34);
             txtSifre.TabIndex = 1;
+            txtSifre.UseSystemPasswordChar = true;
             // 
             // btnGiris
             // 
@@ -104,6 +105,7 @@
             Controls.Add(txtSifre);
             Controls.Add(txtTckn);
             Name = "form_MusteriGiris";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Giris yap";
             Load += form_MusteriGiris_Load;
             ResumeLayout(false);
@@ -111,12 +113,11 @@
         }
 
         #endregion
-
-        private static TextBox txtTckn;
-        private static TextBox txtSifre;
         private Button btnGiris;
         private Label lable1;
         private Label label2;
         private Button btnKayit;
+        private TextBox txtTckn;
+        private TextBox txtSifre;
     }
 }

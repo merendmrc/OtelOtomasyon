@@ -22,6 +22,7 @@ namespace OtelOtomasyon
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //Girdileri kontrol eder, hata var ise uyari verir, hata yok ise veritabanina kayit edeip giris sayfasini acar.
             if (errSifreT.HasErrors || errAd.HasErrors || errSoyad.HasErrors || errMail.HasErrors || errSifre.HasErrors || errYas.HasErrors || errTel.HasErrors || errTckn.HasErrors)
             {
                 MessageBox.Show("Lutfen bilgilerinizi kontrol ediniz...");
@@ -44,10 +45,13 @@ namespace OtelOtomasyon
 
         }
 
+
+        //formdaki tum inputlar icin;
+        //input degisince formdaki tum inputlar'in formatlarinin uygunluk durumu kontrol edilir(InputKontrol class'ini kullanilir).
         private void txtMail_TextChanged(object sender, EventArgs e)
         {
             mail_giris = true;
-            var (mailUygun, mailHata) = Gecerlilik.Mail_Kontrol(txtMail.Text);
+            var (mailUygun, mailHata) = InputKontrol.Mail_Kontrol(txtMail.Text);
 
             if (mailUygun)
             {
@@ -71,7 +75,7 @@ namespace OtelOtomasyon
         private void txtAd_TextChanged(object sender, EventArgs e)
         {
             ad_giris = true;
-            var (ad_uygun, ad_hata) = Gecerlilik.Ad_kontrol(txtAd.Text);
+            var (ad_uygun, ad_hata) = InputKontrol.Ad_kontrol(txtAd.Text);
 
             if (ad_uygun)
             {
@@ -92,7 +96,7 @@ namespace OtelOtomasyon
         private void txtSoyad_TextChanged(object sender, EventArgs e)
         {
             soyad_giris = true;
-            var (soyad_uygun, soyad_hata) = Gecerlilik.Ad_kontrol(txtSoyad.Text);
+            var (soyad_uygun, soyad_hata) = InputKontrol.Ad_kontrol(txtSoyad.Text);
 
             if (soyad_uygun)
             {
@@ -115,7 +119,7 @@ namespace OtelOtomasyon
         {
             yas_giris = true;
 
-            var (Yas_uygun, Yas_hata) = Gecerlilik.Yas_Kontrol(txtYas.Text);
+            var (Yas_uygun, Yas_hata) = InputKontrol.Yas_Kontrol(txtYas.Text);
 
             if (Yas_uygun)
             {
@@ -137,7 +141,7 @@ namespace OtelOtomasyon
         private void txtTckn_TextChanged(object sender, EventArgs e)
         {
             tckn_giris = true;
-            var (Tckn_uygun, Tckn_hata) = Gecerlilik.Tckn_kontrol(txtTckn.Text);
+            var (Tckn_uygun, Tckn_hata) = InputKontrol.Tckn_kontrol(txtTckn.Text);
 
             if (Tckn_uygun)
             {
@@ -159,7 +163,7 @@ namespace OtelOtomasyon
         private void txtSifre_TextChanged(object sender, EventArgs e)
         {
             sifre_giris = true;
-            var (Sifre_uygun, Sifre_hata) = Gecerlilik.Sifre_kontrol(txtSifre.Text);
+            var (Sifre_uygun, Sifre_hata) = InputKontrol.Sifre_kontrol(txtSifre.Text);
 
             if (Sifre_uygun)
             {
@@ -180,7 +184,7 @@ namespace OtelOtomasyon
         private void txtTelefon_TextChanged(object sender, EventArgs e)
         {
             tel_giris = true;
-            var (TelNo_uygun, TelNo_hata) = Gecerlilik.TelNo_kontrol(txtTelefon.Text);
+            var (TelNo_uygun, TelNo_hata) = InputKontrol.TelNo_kontrol(txtTelefon.Text);
 
             if (TelNo_uygun)
             {
@@ -220,10 +224,16 @@ namespace OtelOtomasyon
 
         private void btnGiris_Click(object sender, EventArgs e)
         {
-            Form giris = new form_MusteriGiris();
-            giris.Show();
-
-            this.Close();
+            //Donmek isteyip istemedigini sorar, Yes butonuna tiklarsa giris sayfasini acar.
+            MessageBoxButtons buttons = new MessageBoxButtons();
+            DialogResult cevap;
+            cevap = MessageBox.Show("Henuz kaydiniz olusturulmadi, giris sayfasina donmek istediginize emin misiniz?","Giris sayfasina don?",buttons);
+            if (cevap == DialogResult.Yes)
+            {
+                Form giris = new form_MusteriGiris();
+                giris.Show();
+                this.Close();
+            }
         }
     }
 }

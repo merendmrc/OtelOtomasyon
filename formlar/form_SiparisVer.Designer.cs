@@ -57,11 +57,11 @@
             // 
             // button1
             // 
-            button1.Location = new Point(178, 276);
+            button1.Location = new Point(183, 276);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 2;
-            button1.Text = "button1";
+            button1.Text = "Siparis ver";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -112,6 +112,7 @@
             Controls.Add(comboBox1);
             Controls.Add(label1);
             Name = "form_SiparisVer";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "form_SiparisVer";
             Load += form_SiparisVer_Load;
             ResumeLayout(false);

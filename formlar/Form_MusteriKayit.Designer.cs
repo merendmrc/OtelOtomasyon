@@ -302,6 +302,7 @@
             Controls.Add(txtSifre);
             Controls.Add(txtMail);
             Name = "form_MusteriKayit";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Kayit ol";
             ((System.ComponentModel.ISupportInitialize)errMail).EndInit();
             ((System.ComponentModel.ISupportInitialize)errSifre).EndInit();

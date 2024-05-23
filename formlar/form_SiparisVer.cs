@@ -56,9 +56,27 @@ namespace OtelOtomasyon.formlar
             }
 
             int tutar = ucret * int.Parse(textBox1.Text);
-            Hesap yeni_hesap = new Hesap("Yemek siparisi", tutar);
-            MessageBox.Show(_veriler[comboBox1.SelectedIndex][1]);
-            yeni_hesap.Hesap_olustur(Convert.ToInt32(_veriler[comboBox1.SelectedIndex][1]));
+            try
+            {
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                DialogResult cevap;
+
+                cevap = MessageBox.Show("Siparisi onayliyor musunuz?", "Siparis onayi", buttons);
+
+                if (cevap == DialogResult.Yes)
+                {
+                    Hesap yeni_hesap = new Hesap("Yemek siparisi", tutar);
+                    yeni_hesap.Hesap_olustur(Convert.ToInt32(_veriler[comboBox1.SelectedIndex][1]));
+                    MessageBox.Show("Siparisiniz alindi.");
+                }
+
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Siparis sirasinda hata." + ex);
+                throw;
+            }
         }
     }
 }

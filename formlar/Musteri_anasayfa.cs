@@ -21,17 +21,25 @@ namespace OtelOtomasyon
 
         private void Musteri_anasayfa_Load(object sender, EventArgs e)
         {
+            //oturum'un acik olmasina bagli olarak butonlarin enable ozelliklerini ayarlar
             if (form_MusteriGiris.oturum != null)
             {
                 label1.Text = $"Hosgeldiniz {form_MusteriGiris.oturum.Ad} {form_MusteriGiris.oturum.Soyad}";
                 btnCikis.Enabled = true;
                 btnGiris.Enabled = false;
+                btnRezervasyonlarim.Enabled = true;
+                btnRezervasyonYap.Enabled = true;
+                btnSiparisVer.Enabled = true;
+                
             }
             else
             {
                 label1.Text = "Lutfen giris yapiniz...";
                 btnCikis.Enabled = false;
                 btnGiris.Enabled = true;
+                btnRezervasyonlarim.Enabled = false;
+                btnRezervasyonYap.Enabled = false;
+                btnSiparisVer.Enabled = false;
             }
         }
 
@@ -44,7 +52,7 @@ namespace OtelOtomasyon
         private void button4_Click(object sender, EventArgs e)
         {
             Form form = new form_MusteriGiris();
-            this.Close();
+            this.Hide();
             form.ShowDialog();
         }
 

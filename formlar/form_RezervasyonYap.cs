@@ -45,47 +45,56 @@ namespace OtelOtomasyon
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (form_MusteriGiris.oturum != null)
+            if (comboBox1.SelectedIndex != -1 && cmbOda_no.SelectedIndex != -1)
             {
-                bool durum = Gunler_bosmu(Veritabani.Cek("baslangic_tarih,bitis_tarih", "Rezervasyon", kosul: $" oda_no = '{cmbOda_no.Text.Split(" ")[1]}'"), dateGiris.Value, dateBitis.Value);
-                if (durum)
+                if (form_MusteriGiris.oturum != null)
                 {
-                    var oda = Veritabani.Cek("oda_no,gunluk_ucret,oda_tip,oda_ozellikler", "Odalar", innerJoin: "Oda_tip on Odalar.odatip_id = Oda_tip.odatip_id", kosul: $"oda_no = {int.Parse(cmbOda_no.SelectedItem.ToString().Split(" ")[1])}")[0];
-                    string bilgiler = $"Oda: {oda[0]}\nOda tipi: {oda[2]}\nOda ozellikler: {oda[3]}\nGiris tarihi: {dateGiris.Text}\nCikis tarihi: {dateBitis.Text}\nKonaklanacak gun sayisi: {(dateBitis.Value.Subtract(dateGiris.Value)).Days.ToString()}\nUcret: {(dateBitis.Value.Subtract(dateGiris.Value)).Days * int.Parse(oda[1])}";
-                    string Soru = $"Rezervasyon Bilgileri:\n{bilgiler}\n\nOnaylıyor musunuz?";
-                    string Baslik = "Rezervasyon Onayı";
-                    MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-                    DialogResult cevap;
-
-                    cevap = MessageBox.Show(Soru, Baslik, buttons);
-
-                    if (cevap == DialogResult.Yes)
+                    bool durum = Gunler_bosmu(Veritabani.Cek("baslangic_tarih,bitis_tarih", "Rezervasyon", kosul: $" oda_no = '{cmbOda_no.Text.Split(" ")[1]}'"), dateGiris.Value, dateBitis.Value);
+                    if (durum)
                     {
-                        Rezervasyon rezervasyon = new Rezervasyon(Convert.ToInt32(cmbOda_no.SelectedItem.ToString().Split(" ")[1]), dateGiris.Text, dateBitis.Text);
-                        rezervasyon.Rezervasyon_olustur();
-                        MessageBox.Show("Rezervasyonunuz basariyla gerceklesti. İyi gunler dileriz..");
-                        this.Show();
+                        var oda = Veritabani.Cek("oda_no,gunluk_ucret,oda_tip,oda_ozellikler", "Odalar", innerJoin: "Oda_tip on Odalar.odatip_id = Oda_tip.odatip_id", kosul: $"oda_no = {int.Parse(cmbOda_no.SelectedItem.ToString().Split(" ")[1])}")[0];
+                        string bilgiler = $"Oda: {oda[0]}\nOda tipi: {oda[2]}\nOda ozellikler: {oda[3]}\nGiris tarihi: {dateGiris.Text}\nCikis tarihi: {dateBitis.Text}\nKonaklanacak gun sayisi: {(dateBitis.Value.Subtract(dateGiris.Value)).Days.ToString()}\nUcret: {(dateBitis.Value.Subtract(dateGiris.Value)).Days * int.Parse(oda[1])}";
+                        string Soru = $"Rezervasyon Bilgileri:\n{bilgiler}\n\nOnaylıyor musunuz?";
+                        string Baslik = "Rezervasyon Onayı";
+                        MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                        DialogResult cevap;
+
+                        cevap = MessageBox.Show(Soru, Baslik, buttons);
+
+                        if (cevap == DialogResult.Yes)
+                        {
+                            Rezervasyon rezervasyon = new Rezervasyon(Convert.ToInt32(cmbOda_no.SelectedItem.ToString().Split(" ")[1]), dateGiris.Text, dateBitis.Text);
+                            rezervasyon.Rezervasyon_olustur();
+                            MessageBox.Show("Rezervasyonunuz basariyla gerceklesti. İyi gunler dileriz..");
+                            this.Show();
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Oda dolu.");
                     }
 
                 }
                 else
                 {
-                    MessageBox.Show("Oda dolu.");
+                    MessageBox.Show("Rezervasyon yapmak icin oturum acmaniz gerekmektedir...");
+                    Form form = new form_MusteriGiris();
+                    form.ShowDialog();
                 }
-
             }
             else
             {
-                MessageBox.Show("Rezervasyon yapmak icin oturum acmaniz gerekmektedir...");
-                Form form = new form_MusteriGiris();
-                form.ShowDialog();
+                MessageBox.Show("Oda türü- oda numarasi seçimlerinizi kontrol ediniz..");
             }
         }
 
         private void form_RezervasyonYap_Load(object sender, EventArgs e)
         {
-            dateGiris.MinDate = DateTime.Now.AddDays(1);
+            dateGiris.MinDate = DateTime.Now;
             dateBitis.MinDate = dateGiris.Value.AddDays(1);
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbOda_no.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void dateGiris_ValueChanged_1(object sender, EventArgs e)
@@ -94,6 +103,16 @@ namespace OtelOtomasyon
         }
 
         private void cmbOda_no_DropDown(object sender, EventArgs e)
+        {
+            Gunleri_yukle();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Gunleri_yukle()
         {
             cmbOda_no.Items.Clear();
             int baslangic = 1;
@@ -133,16 +152,11 @@ namespace OtelOtomasyon
             }
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!checkBox1.Checked)
-            {
-                dateGiris.MinDate = DateTime.Now.AddDays(1);
-            }
-            else
-            {
-                dateGiris.MinDate = new DateTime(2020, 1, 1);
-            }
+            Gunleri_yukle();
         }
     }
 }
+
+

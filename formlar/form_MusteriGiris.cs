@@ -28,6 +28,12 @@ namespace OtelOtomasyon
 
         private static bool Sifre_dogrulama(string sifre,string tckn)
         {
+            //Gonderilen sifre ve tckn numarasinin veritabaninda eşleşip eşleşmediğini kontrol eder.
+            //args:
+            //      sifre(string):form'a girilen sifre
+            //      tckcn(string):form'a girilen tckn
+            //returns bool: sifre veritabanindaki sifre ile uyusuyor ise-> true; uyusmuyor ise-> false
+            
             SimpleHash dogrula = new SimpleHash();
             var x = Veritabani.Cek("Musteri_sifre", "Musteriler", $"Musteri_tckn = '{tckn}'");
             if (dogrula.Verify(sifre, x[0][0]))
@@ -43,6 +49,7 @@ namespace OtelOtomasyon
 
         private void btnKayit_Click(object sender, EventArgs e)
         {
+            //kayit sayfasina yonlendirir
             Form kayitform = new form_MusteriKayit();
             kayitform.Show();
             this.Close();
@@ -50,7 +57,8 @@ namespace OtelOtomasyon
 
         private void btnGiris_Click(object sender, EventArgs e)
         {
-            if (!Gecerlilik.Tckn_kontrol(txtTckn.Text).Item1)
+            //bilgileri dogrulayıp oturum acar
+            if (!InputKontrol.Tckn_kontrol(txtTckn.Text).Item1)
             {
                 MessageBox.Show("Kimlik numaranizi yanlis girdiniz.");
             }
@@ -58,7 +66,7 @@ namespace OtelOtomasyon
             {
                 MessageBox.Show("Kimlik numaranizla kayitli hesap bulunamadi.");
             }
-            else if (!Gecerlilik.Sifre_kontrol(txtSifre.Text).Item1)
+            else if (!InputKontrol.Sifre_kontrol(txtSifre.Text).Item1)
             {
                 MessageBox.Show("Sifrenizi kontrol ediniz.");
             }

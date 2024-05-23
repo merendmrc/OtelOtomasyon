@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OtelOtomasyon.classes
 {
-    internal class Gecerlilik
+    internal class InputKontrol
     {
         private static bool uygun;
         private static string hatamsg = "";
